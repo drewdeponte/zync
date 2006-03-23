@@ -1,0 +1,61 @@
+1. Building zync and its libraries
+----------------------------------
+In order to build the zync application and it's required libraries all one
+should have to do is the following command under their user account (This
+should be from the root of the project directory):
+
+$ make
+
+2. Installing zync and its libraries
+------------------------------------
+To install zync and it's required libraries all one must do is the following
+command as root (from the root of the projects directory).
+
+# make install
+
+3. Configuring zync
+-------------------
+Note: The I recomend installing zync-gui and using it to configure and run
+zync. However, if you do not want to install zync-gui or are on a command line
+only box and can't install zync-gui then follow the directions below.
+
+The zync configuration file should exist within your home directory. It is a
+file called .zync.conf. If you have not created a zync configuration file
+before then I suggest copying the example.zync.conf found in the
+zync-x.x.x/conf/ directory to .zync.conf in your home directory.
+
+Once the file is in your home directory you need to edit it in a text editor
+to fit your needs. The first option which needs to be set is the
+"todo_plugin_path" option (without quotes in config file). This option needs
+to contain the full path to the Todo plugin you would like to use for
+synchronization.
+
+todo_plugin_path=/usr/local/lib/zync/plugins/todo/KOrgTodoPlugin.so
+
+The second option that may need changing is the "conflict_winner" option
+(without quotes in config file). This option is used to specify how conflicts
+are handled. There are three acceptable values.
+zaurus - This value means that if there is a conflict the Zaurus should win.
+desktop - This value means that if there is a conflict the desktop should win.
+both - This value means that if there is a conflict the items are duplicated.
+
+conflict_winner=both
+
+The third option that may need to be changed is the "zaurus_ip" option. This
+option is used to specify the ip address of the Zaurus so that it does not
+have to be specified on the command line all the time.
+
+zaurus_ip=192.168.129.201
+
+The fourth option that may need to be set is the "passcode" option. This
+option is used to specify the passcode of the Zaurus. This option only needs
+to exist if a passcode is set on the Zaurus.
+
+passcode=8294
+
+4. Using zync
+-------------
+Simply execute the zync command as follows and a usage message will be
+displayed explaining how to use it.
+
+$ zync -h

@@ -1,0 +1,256 @@
+#
+# Copyright 2003-2005 Andrew De Ponte.
+#
+# This file is part of zsrep.
+#
+# zsrep is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# any later version.
+#
+# zsrep is distributed in the hopes that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Generel Public License for details.
+#
+# You should have received a copy of the GNU General Public License
+# along with zsrep; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA, 02111-1307 USA
+#
+
+ZMSG_OBJ = zmsg.o
+ZMSG_SRC = zmsg.cc
+
+BYTEORD_OBJ = byteorder.o
+BYTEORD_SRC = byteorder.cc
+
+RAYMSGTYPE_OBJ = RAYMessageType.o
+RAYMSGTYPE_SRC = RAYMessageType.cc
+RIGMSGTYPE_OBJ = RIGMessageType.o
+RIGMSGTYPE_SRC = RIGMessageType.cc
+RRLMSGTYPE_OBJ = RRLMessageType.o
+RRLMSGTYPE_SRC = RRLMessageType.cc
+RMGMSGTYPE_OBJ = RMGMessageType.o
+RMGMSGTYPE_SRC = RMGMessageType.cc
+RTGMSGTYPE_OBJ = RTGMessageType.o
+RTGMSGTYPE_SRC = RTGMessageType.cc
+RMSMSGTYPE_OBJ = RMSMessageType.o
+RMSMSGTYPE_SRC = RMSMessageType.cc
+RGEMSGTYPE_OBJ = RGEMessageType.o
+RGEMSGTYPE_SRC = RGEMessageType.cc
+RSYMSGTYPE_OBJ = RSYMessageType.o
+RSYMSGTYPE_SRC = RSYMessageType.cc
+RDRMSGTYPE_OBJ = RDRMessageType.o
+RDRMSGTYPE_SRC = RDRMessageType.cc
+RDSMSGTYPE_OBJ = RDSMessageType.o
+RDSMSGTYPE_SRC = RDSMessageType.cc
+RDDMSGTYPE_OBJ = RDDMessageType.o
+RDDMSGTYPE_SRC = RDDMessageType.cc
+RDWMSGTYPE_OBJ = RDWMessageType.o
+RDWMSGTYPE_SRC = RDWMessageType.cc
+RDIMSGTYPE_OBJ = RDIMessageType.o
+RDIMSGTYPE_SRC = RDIMessageType.cc
+RSSMSGTYPE_OBJ = RSSMessageType.o
+RSSMSGTYPE_SRC = RSSMessageType.cc
+
+AAYMSGTYPE_OBJ = AAYMessageType.o
+AAYMSGTYPE_SRC = AAYMessageType.cc
+AIGMSGTYPE_OBJ = AIGMessageType.o
+AIGMSGTYPE_SRC = AIGMessageType.cc
+AMGMSGTYPE_OBJ = AMGMessageType.o
+AMGMSGTYPE_SRC = AMGMessageType.cc
+ATGMSGTYPE_OBJ = ATGMessageType.o
+ATGMSGTYPE_SRC = ATGMessageType.cc
+AGEMSGTYPE_OBJ = AGEMessageType.o
+AGEMSGTYPE_SRC = AGEMessageType.cc
+ALRMSGTYPE_OBJ = ALRMessageType.o
+ALRMSGTYPE_SRC = ALRMessageType.cc
+ASYMSGTYPE_OBJ = ASYMessageType.o
+ASYMSGTYPE_SRC = ASYMessageType.cc
+AEXMSGTYPE_OBJ = AEXMessageType.o
+AEXMSGTYPE_SRC = AEXMessageType.cc
+ADRMSGTYPE_OBJ = ADRMessageType.o
+ADRMSGTYPE_SRC = ADRMessageType.cc
+ADWMSGTYPE_OBJ = ADWMessageType.o
+ADWMSGTYPE_SRC = ADWMessageType.cc
+ADIMSGTYPE_OBJ = ADIMessageType.o
+ADIMSGTYPE_SRC = ADIMessageType.cc
+
+ZMSGTYPE_OBJ = ZaurusMessageType.o
+ZMSGTYPE_SRC = ZaurusMessageType.cc
+
+DMSGTYPE_OBJ = DesktopMessageType.o
+DMSGTYPE_SRC = DesktopMessageType.cc
+
+MSGTYPE_OBJ = MessageType.o
+MSGTYPE_SRC = MessageType.cc
+
+MSGBODYTYPE_OBJ = MessageBodyType.o
+MSGBODYTYPE_SRC = MessageBodyType.cc
+
+# The directory where the library should be installed. Note: This needs to
+# have a trailing / for it to be a fully qualified path and work properly.
+DEST_LIB_DIRECTORY = /usr/local/lib/
+
+# This is the libraries interface number, this only changes if the
+# interface changes.
+LIBZMSG_INTERFACE_NUM = 0
+# This is the libraries output file name.
+LIBZMSG_OUT_FILENAME = libzmsg.so
+# This is the name of the symlink to the file which should be created by
+# ldconfig.
+LIBZMSG_SONAME = $(LIBZMSG_OUT_FILENAME).$(LIBZMSG_INTERFACE_NUM)
+# This is the libraries minor number
+LIBZMSG_MIN_NUM = 0
+# This is the libaries release number
+LIBZMSG_REL_NUM = 0
+# This is the actual name of the file
+LIBZMSG_REALNAME = $(LIBZMSG_SONAME).$(LIBZMSG_MIN_NUM).$(LIBZMSG_REL_NUM)
+# A series of all the object files used to create the ZMSG library.
+LIBZMSG_OBJS = $(MSGTYPE_OBJ) $(ZMSGTYPE_OBJ) $(DMSGTYPE_OBJ) $(ZMSG_OBJ) \
+$(MSGBODYTYPE_OBJ) $(RAYMSGTYPE_OBJ) $(RIGMSGTYPE_OBJ) $(RRLMSGTYPE_OBJ) \
+$(RTGMSGTYPE_OBJ) $(AAYMSGTYPE_OBJ) $(AIGMSGTYPE_OBJ) $(AMGMSGTYPE_OBJ) \
+$(ATGMSGTYPE_OBJ) $(RMSMSGTYPE_OBJ) $(RGEMSGTYPE_OBJ) $(AGEMSGTYPE_OBJ) \
+$(ALRMSGTYPE_OBJ) $(ASYMSGTYPE_OBJ) $(AEXMSGTYPE_OBJ) $(RSYMSGTYPE_OBJ) \
+$(RDRMSGTYPE_OBJ) $(ADRMSGTYPE_OBJ) $(RDSMSGTYPE_OBJ) $(RDDMSGTYPE_OBJ) \
+$(RMGMSGTYPE_OBJ) $(RDWMSGTYPE_OBJ) $(ADWMSGTYPE_OBJ) $(RDIMSGTYPE_OBJ) \
+$(ADIMSGTYPE_OBJ) $(RSSMSGTYPE_OBJ) $(BYTEORD_OBJ)
+
+# Remove command
+RM = rm -rf
+
+# The compiler and its options.
+COMPILER = g++
+# The compile only (do not link) flag.
+COMPILE_FLAG = -c
+# Position Independent Code Flag.
+PIC_FLAG = -fPIC
+# Enable debug code within compile.
+DEBUG_FLAG = -g
+# The warnings control flag.
+WARNING_FLAG = -Wall
+# The flag used to specify the file name to use for output.
+OUTPUT_FLAG = -o
+# The flag used to specify the SONAME of a library when creating
+# a shared library.
+SONAME_FLAG = -shared -Wl,-soname,
+
+#####################################################################
+# No user configuration should occur below this line.
+#####################################################################
+
+all : $(LIBZMSG_REALNAME)
+
+# Create the shared library.
+$(LIBZMSG_REALNAME) : $(LIBZMSG_OBJS)
+	$(COMPILER) $(DEBUG_FLAG) $(SONAME_FLAG)$(LIBZMSG_SONAME) $(OUTPUT_FLAG) $(LIBZMSG_REALNAME) $(LIBZMSG_OBJS)
+	ln -sf $(LIBZMSG_REALNAME) $(LIBZMSG_SONAME)
+	ln -sf $(LIBZMSG_REALNAME) $(LIBZMSG_OUT_FILENAME)
+
+# Here we create the zmsg shared object file.
+$(ZMSG_OBJ) : $(ZMSG_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ZMSG_SRC)
+
+$(BYTEORD_OBJ) : $(BYTEORD_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(BYTEORD_SRC)
+
+$(RAYMSGTYPE_OBJ) : $(RAYMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RAYMSGTYPE_SRC)
+
+$(RSYMSGTYPE_OBJ) : $(RSYMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RSYMSGTYPE_SRC)
+
+$(RDRMSGTYPE_OBJ) : $(RDRMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RDRMSGTYPE_SRC)
+
+$(RDDMSGTYPE_OBJ) : $(RDDMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RDDMSGTYPE_SRC)
+
+$(RDWMSGTYPE_OBJ) : $(RDWMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RDWMSGTYPE_SRC)
+
+$(RDIMSGTYPE_OBJ) : $(RDIMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RDIMSGTYPE_SRC)
+
+$(RMGMSGTYPE_OBJ) : $(RMGMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RMGMSGTYPE_SRC)
+
+$(RDSMSGTYPE_OBJ) : $(RDSMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RDSMSGTYPE_SRC)
+
+$(AAYMSGTYPE_OBJ) : $(AAYMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(AAYMSGTYPE_SRC)
+
+$(ADRMSGTYPE_OBJ) : $(ADRMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ADRMSGTYPE_SRC)
+
+$(AGEMSGTYPE_OBJ) : $(AGEMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(AGEMSGTYPE_SRC)
+
+$(AIGMSGTYPE_OBJ) : $(AIGMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(AIGMSGTYPE_SRC)
+
+$(AMGMSGTYPE_OBJ) : $(AMGMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(AMGMSGTYPE_SRC)
+
+$(ATGMSGTYPE_OBJ) : $(ATGMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ATGMSGTYPE_SRC)
+
+$(ALRMSGTYPE_OBJ) : $(ALRMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ALRMSGTYPE_SRC)
+
+$(AEXMSGTYPE_OBJ) : $(AEXMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(AEXMSGTYPE_SRC)
+
+$(ADWMSGTYPE_OBJ) : $(ADWMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ADWMSGTYPE_SRC)
+
+$(ADIMSGTYPE_OBJ) : $(ADIMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ADIMSGTYPE_SRC)
+
+$(ASYMSGTYPE_OBJ) : $(ASYMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ASYMSGTYPE_SRC)
+
+$(RIGMSGTYPE_OBJ) : $(RIGMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RIGMSGTYPE_SRC)
+
+$(RRLMSGTYPE_OBJ) : $(RRLMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RRLMSGTYPE_SRC)
+
+$(RTGMSGTYPE_OBJ) : $(RTGMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RTGMSGTYPE_SRC)
+
+$(RMSMSGTYPE_OBJ) : $(RMSMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RMSMSGTYPE_SRC)
+
+$(RGEMSGTYPE_OBJ) : $(RGEMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RGEMSGTYPE_SRC)
+
+$(ZMSGTYPE_OBJ) : $(ZMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(ZMSGTYPE_SRC)
+
+$(DMSGTYPE_OBJ) : $(DMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(DMSGTYPE_SRC)
+
+$(MSGTYPE_OBJ) : $(MSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(MSGTYPE_SRC)
+
+$(MSGBODYTYPE_OBJ) : $(MSGBODYTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(MSGBODYTYPE_SRC)
+
+$(RSSMSGTYPE_OBJ) : $(RSSMSGTYPE_SRC)
+	$(COMPILER) $(PIC_FLAG) $(WARNING_FLAG) $(DEBUG_FLAG) $(COMPILE_FLAG) $(RSSMSGTYPE_SRC)
+
+
+# Here we install the shared library into the proper directory.
+install : $(LIBZMSG_REALNAME)
+	cp $(LIBZMSG_REALNAME) $(DEST_LIB_DIRECTORY)
+	chown root:root $(DEST_LIB_DIRECTORY)$(LIBZMSG_REALNAME)
+	chmod 755 $(DEST_LIB_DIRECTORY)$(LIBZMSG_REALNAME)
+	ln -sf $(DEST_LIB_DIRECTORY)$(LIBZMSG_REALNAME) $(DEST_LIB_DIRECTORY)$(LIBZMSG_SONAME)
+	ln -sf $(DEST_LIB_DIRECTORY)$(LIBZMSG_REALNAME) $(DEST_LIB_DIRECTORY)$(LIBZMSG_OUT_FILENAME)
+	/sbin/ldconfig
+
+# Here we get rid of the files that we created.
+clean :
+	$(RM) $(LIBZMSG_REALNAME) $(LIBZMSG_OBJS) $(LIBZMSG_OUT_FILENAME) $(LIBZMSG_SONAME)

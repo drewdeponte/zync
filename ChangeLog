@@ -1,0 +1,314 @@
+2005-04-21 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Fixed the problem in the ConvZDateTime private member function
+	where the TZ environment variable was not being reset on failures.
+	
+	* Modified the ADRMessageType class ConvZDateTime private member
+	function so that it now returns the local time as it should rather
+	than GMT.
+
+2005-04-21 Andrew De Ponte <cyphactor@socal.rr.com>
+	
+	* Modified the ADRMessageType class ConvZDateTime private member
+	function to properly convert the Zaurus format in a cross-platform
+	manner as well as one which now works in all time zones.
+
+	* Modified the RDWMessageType class ConvCalTime private member
+	function to properly convert the time_t calendar time into the
+	Zaurus format in a cross-platform manner as well as one which now
+	works in all time zones.
+
+	* Fixed some typos in the SetCalendarItemParam() member function
+	of the ZaurusType class so that it will parse the ADR messages
+	correctly.
+
+2005-04-17 Andrew De Ponte <cyphactor@socal.rr.com>
+	
+	* Replaced the AddTodoItem(), ModifyTodoItem(), and GetTodoItem()
+	private member functions of the ZaurusType class with versions
+	that use the GetTodoItemParam() and SetTodoItemParam()
+	functions. The original working functions are still in the code,
+	just commented out until testing has been performed and Todo
+	synchronization is successful.
+	
+	* Implemented the GetTodoItemParam() private member function in
+	the ZaurusType class.
+	
+	* Implemented the SetTodoItemParam() private member function in
+	the ZaurusType class.
+	
+	* Modified the SetCalendarItemParam() private member function of
+	the ZaurusType class to use the DATA_ID access functions that were
+	just added to the ADRMessageType class.
+	
+	* Added the DATA_ID access functions to the ADRMessageType class
+	and added byte order swapping where needed to make it cross-platform.
+
+2005-04-16 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Fixed const correctness for the CardParamInfoType class.
+	
+	* Fixed const correctness for all classes in the zdata library.
+	
+	* Updated the doxygen comments in the RDWMessageType class.
+	
+	* Modified the AddCalendarItem member function of the ZaurusType
+	class to use the new GetCalendarItemParam function.
+	
+	* Modified the ModifyCalendarItem member function of the
+	ZaurusType class to use the new GetCalendarItemParam function.
+
+	* Modified the GetCalendarItemParam private member function of the
+	ZaurusType class to use the new version of the RDWMessageType
+	class. This makes the GetCalendarItemParam function cross-platform
+	with respect to byte order as well as eliminates code duplication.
+	
+	* Added the Bit, Time, ULong, Barray, UTF8, UChar, and Word append
+	member functions to the RDWMessageType class eliminating code
+	repetition and provide a common standard interface handeling
+	conversion and byte order swapping.
+	
+	* Coppied ConvCalTime from the ZaurusType class into the
+	RDWMessageType class as a private member function so that it may
+	be used internally. ConvCalTime still needs to be removed from the
+	ZaurusType class however all of its calls inside the ZaurusType
+	class need to be removed.
+	
+	* Added support to the RDWMessageType class to now allow total
+	creation of RDW messages using the class rather than it being a
+	stub class. This provides seperation of conversions and byte
+	swapping to allow for a better design in a cross-platform design
+	as well as eliminating a large amount of code duplication.
+	
+	* Modified the SwapByteOrder() function of zmsg library to be more
+	inteligent so that it no longer performs the malloc unless both
+	pointers point to the same memory address.
+	
+	* Added byte order support to the RDWMessageType class in the zmsg
+	class.
+
+2005-04-07 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Added byte order support to the required classes of the zmsg
+	library so that it is cross-platform with respect to the byte order.
+
+	* Modified the SwapByteOrder() function of the zmsg library to
+	allow for the src and dst parameters to point to the same memory.
+	
+	* Added the IsBigEndian() function to the zmsg library to provide
+	a cleaner interface than the already existent by GetHostByteOrder().
+	
+	* Added the IsLittleEndain() function to the zmsg library to provide
+	a cleaner interface than the already existent by GetHostByteOrder().
+	
+	* Added the SwapByteOrder() function to the zmsg library so that
+	the cross-platform problems dealing with byte order may be resolved.
+
+2005-04-03 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Added the PerformCalendarSync function to zync without conflict
+	resolution support so I could test it.
+
+	* Modified the SendRSS function of the zmsg library to use the
+	RSSMessageType class which allows for specifying of
+	synchronization type.
+	
+	* Added the RSSMessageType class to the zmsg library.
+	
+	* Fixed a line in CalendarPluginType.hh file where a function
+	prototype was defined to return a AddrBookItemType rather than a
+	CalendarItemType.
+
+2005-03-28 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Altered zync.cc to work with the name changes of create_t and
+	destroy_t for all of the plugins.
+	
+	* Changed the create_t and destroy_t types to create_todo_t,
+	create_addr_t, and create_cal_t respectively as well as for the
+	destroy_t types within the Plugin template class headers so that
+	there are no name conflicts. This will require that the zync.cc be
+	changed to work with this but it shouldn't be to much of a change.
+	
+	* Created the CalendarPluginType.hh class specification file so
+	that there is a rigid base template class existing for Calendar
+	plugins.
+	
+	* Implemented the GetAllCalendarSyncItems() public member function
+	of the ZaurusType class.
+
+2005-03-27 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Implemented the AddCalendarItems() public member function of the
+	ZaurusType class.
+	
+	* Implemented the ModCalendarItems() public member function of the
+	ZaurusType class.
+	
+	* Implemented the DelCalendarItems() public member function of the
+	ZaurusType class.
+	
+	* Implemented the AddCalendarItem() private member function of the
+	ZaurusType class using the GetCalendarItemParam() private member
+	function.
+	
+	* Replaced the stub version of the GetCalendarItemParam() private
+	member function of the Zaurus class with the fully implemented
+	version of the function.
+	
+	* Implemented the ModifyCalendarItem() private member function of the
+	ZaurusType class using the GetCalendarItemParam() private member
+	function stub.
+
+2005-03-16 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Implemented the GetCalendarItem() private member function of the
+	ZaurusType class using the SetCalendarItemParam() private member
+	function.
+	
+	* Fully implemented the SetCalendarItemParam() private member
+	function of the ZaurusType class.
+	
+	* Changed the repeatPeriod and repeatPosition members of the
+	CalendarItemType class to an unsigned short given that it is
+	stored as a word which is 2 bytes. I also adjusted all associated
+	access functions to follow.
+	
+	* Changed the alarm time member of the CalendarItemType class to
+	an unsigned short given that it is stored as a word which is 2
+	bytes. I also adjusted all it's associated access functions to
+	follow.
+	
+	* Tested the new obtain parameter information code that is used to
+	obtain the data format using the protocol. It looks to be working
+	fine in normal sync and should work fine in full sync as well.
+	
+	* Fixed a byte offset in the GetParamAbrev() member function of
+	the ADIMessageType class of libzmsg.
+
+	* Created a function that prints the list of the cards param info
+	as soon as it is obtained to make sure that it was obtained correctly.
+	
+2005-03-14 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Implemented the ObtainParamInfo() call into the
+	PerformTodoSync() function of the zync application. I tested this
+	in normal sync mode and it seems to be working fine. I have NOT
+	tested it in full sync mode yet, however it should work and will
+	no doubt get tested at some point in the future.
+	
+	* Created a public member function of the ZaurusType class called
+	ObtainParamInfo() which uses the Zaurus synchronization protocol
+	to obtain the parameter information used to populate the
+	paramInfoList private member variable.
+	
+	* Created a private member of the ZaurusType class of type
+	CardParamInfoType::List. This list will be used as a reference for
+	the data format used in exchanges between the Zaurus and the
+	Desktop for a specific type of synchronization.
+	
+2005-02-22 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Created the CardParamInfoType class and defined type
+	CardParamInfoType::List to allow for dynamic creation of a list of
+	all the associated cards parameter info. This will allow more
+	robustness for future versions of the protocol as well as a better
+	method for parsing card data.
+	
+	* Added the ADIMessageType class to the zmsg library so that
+	receiving of ADI messages can be easier as well as parsing the
+	data from them.
+	
+	* Added the RDIMessageType class to the zmsg library so that
+	creation and sending of RDI messages is easy.
+
+2005-02-15 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Changed the ZaurusType::DeleteTodoItem() private member function
+	to ZaurusType::DeleteItem() given that it is more generic and
+	works the same way for all types of synchronizations. There, is no
+	need to have three functions which do the same thing. I also
+	adjusted the ZaurusType::DelTodoItems() public member function to
+	call ZarusType::DeleteItem() rather than the old
+	ZaurusType::DeleteTodoItem() private member function.
+
+	* Implemented the GetCalendarItem() private member function in the
+	ZaurusType class so that I may use it in the implementation of the
+	GetAllCalendarSyncItems() public member function.
+
+2005-02-10 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Created a dox_docs directory and a Doxyfile for each of the zync
+	components for which doxygen documents can be created.
+	
+	* Finished implementing the CalendarItemType class and added it to
+	the build process in the Makefile as well as the install process
+	and clean process of the Makefile.
+
+2005-02-10 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Started writing the CalendarItemType class for the zdata
+	library. It is not finished yet, the properly implemented portion
+	is the top half seperated by a number of blank lines.
+
+--- 0.2.6 Released
+
+2005-02-07 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Rewrote the one step Full Sync code, and tested it with the new
+	KOrgTodoPlugin which now uses CalendarLocal again rather then
+	CalendarResources.
+
+	* Updated zync to use the new unique create and destroy functions.
+
+	* Changed the Todo and Address Book template classes to have
+	unique create and destroy functions as to not topple each other in
+	certain cases while loading plugins.
+
+2005-01-25 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Fixed the Todo Notes to Desc translation problem when syncing
+	after a full sync.
+
+	* Enabled the one step Full Sync code, and tested it with the new
+	KOrgTodoPlugin that uses CalendarResources rather than
+	CalendarLocal, success!!!!!!
+	
+2005-01-21 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Added the Todo Plugin CleanUp call to Full Sync.
+	
+--- 0.2.5 Released
+
+2005-01-19 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Added the AddrBookItemType class.
+	* Added the AddrBookPluginType class.
+	* Added a man page to zync.
+	* Modified the Makefile to install the man page.
+	* Fixed a bunch of typos and grammer problems in the man page.
+	* Moved the example.zync.conf and updated the README for it.
+	* Added a Makefile to the conf dir to install the example conf.
+	* Modified the Makefile to install COPYING, README, AUTHORS, etc.
+	* Fixed a number of bugs dealing with failure in loading the
+	config.
+	* Added temporary Full Sync two step method so people can sync if
+	they have never synchronized before.
+
+2005-01-07 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Added the example.zync.conf to the root directory.
+	* Modified the README to cover the passcode config option.
+	* Modified the library Makefiles to call /sbin/ldconfig.
+
+2005-01-04 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Created the AddrBookItemType.hh and AddrBookItemType.cc files in
+	the zdata library. I have not fully implemented them. I just
+	started them.
+
+2005-01-03 Andrew De Ponte <cyphactor@socal.rr.com>
+
+	* Added Authentication support.
+	
+--- 0.2.1 Released
